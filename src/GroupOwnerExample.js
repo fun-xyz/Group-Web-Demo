@@ -10,18 +10,15 @@ import {
   generateRandomGroupId,
   Goerli,
   configureNewFunStore,
-  usePrimaryAuth,
-  useOperations,
-  useActiveClients,
-  useUserInfo,
   useActiveAuths
 } from "@fun-xyz/react";
-import { Auth } from "@fun-xyz/react";
 import { useMemo } from "react";
 import { useState } from "react";
 import ConnectorButton from "./components/ConnectorButton"
 import SocialButton from "./components/SocialButton";
 
+
+// 1. Setting up our default FunWallet configuration by configuring react store state.
 const DEFAULT_FUN_WALLET_CONFIG = {
   apiKey: "hnHevQR0y394nBprGrvNx4HgoZHUwMet5mXTOBhf",
   chain: Goerli,
@@ -29,12 +26,14 @@ const DEFAULT_FUN_WALLET_CONFIG = {
     sponsorAddress: "0xCB5D0b4569A39C217c243a436AC3feEe5dFeb9Ad", //Gasless payments on Goerli. Please switch to another gas sponsor method, or prefund your wallet on mainnet!
   }
 };
+
 const DEFAULT_CONNECTORS = [
   MetamaskConnector(),
   CoinbaseWalletConnector("FUN EXAMPLE APP NAME"),
   WalletConnectConnector(),
   SocialOauthConnector(SUPPORTED_OAUTH_PROVIDERS),
 ];
+
 configureNewFunStore({
   config: DEFAULT_FUN_WALLET_CONFIG,
   connectors: DEFAULT_CONNECTORS,
@@ -52,8 +51,8 @@ export default function App() {
     return activeConnectors.filter((connector) => connector.active);
   }, [activeConnectors]);
 
+  //Initiaize the wallet using initializeFunAccount
   const initializeGroupAuthWallet = () => {
-
     const groupId = generateRandomGroupId()
     initializeFunAccount({
       users: [
@@ -71,19 +70,20 @@ export default function App() {
 
   const createWallet = async () => {
     setLoading(true)
-   
+    //Create the operation
     const op = await funWallet.create(activeAuths[0], groupIds[0])
     const operation = await funWallet.getOperation(op.opId)
+
+    //Sign the operation with all signers that are connected
     for (let auth of activeAuths) {
       await funWallet.signOperation(auth, operation)
     }
 
-
+    //Execute the operation.
     const receipt = await funWallet.executeOperation(activeAuths[0], operation)
     setReceiptTxId(receipt.txId)
     setLoading(false)
 
-    // FINAL STEP: Add your custom action logic here (swap, transfer, etc)
   }
 
 

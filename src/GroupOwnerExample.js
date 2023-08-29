@@ -16,7 +16,7 @@ import { useMemo } from "react";
 import { useState } from "react";
 import ConnectorButton from "./components/ConnectorButton"
 
-// 1. Setting up our default FunWallet configuration by configuring react store state.
+//Step 1: Initialize the FunStore. This action configures your environment based on your apikey, chain, and the authentication methods of your choosing. 
 const DEFAULT_FUN_WALLET_CONFIG = {
   apiKey: "hnHevQR0y394nBprGrvNx4HgoZHUwMet5mXTOBhf",
   chain: Goerli,
@@ -49,7 +49,7 @@ export default function App() {
     return activeConnectors.filter((connector) => connector.active);
   }, [activeConnectors]);
 
-  //Initiaize the wallet using initializeFunAccount
+  //Step 2: Use the initializeFunAccount method to create your funWallet object
   const initializeGroupAuthWallet = () => {
     const groupId = generateRandomGroupId()
     initializeFunAccount({
@@ -62,22 +62,22 @@ export default function App() {
           }
         }
       ],
-      index: 12533212
+      index: 1234512345 //random number
     }).catch()
   }
 
   const createWallet = async () => {
     setLoading(true)
-    //Create the operation
+    //Step 3: Create the operation
     const op = await funWallet.create(activeAuths[0], groupIds[0])
     const operation = await funWallet.getOperation(op.opId)
 
-    //Sign the operation with all signers that are connected
+    //Step 4: Sign the operation with all signers that are connected
     for (let auth of activeAuths) {
       await funWallet.signOperation(auth, operation)
     }
 
-    //Execute the operation.
+    //Step 5: Execute the operation.
     const receipt = await funWallet.executeOperation(activeAuths[0], operation)
     setReceiptTxId(receipt.txId)
     setLoading(false)
@@ -88,12 +88,15 @@ export default function App() {
   return (
     <div className="App">
       <h1>Create FunWallet that requires multiple users to sign off on a transaction.</h1>
-      1. Connect authentication providers.
+      1.&ensp;
       {connectors && connectors.map((_, index) => (
         index === 3 ?
           null
           :
-          <ConnectorButton key={index} index={index} />
+          <> 
+            <ConnectorButton key={index} index={index} /> &ensp;
+          </>
+
       ))
       }
       {
@@ -104,7 +107,7 @@ export default function App() {
       <br></br>
       <br></br>
 
-      2. Initialize FunWallet.
+      2.&ensp;
       <button onClick={initializeGroupAuthWallet}>Create group auth wallet</button>
       {account ?
         <div>
@@ -116,7 +119,7 @@ export default function App() {
       <br></br>
 
 
-      3. Create FunWallet.
+      3.&ensp;
       <button onClick={createWallet}>Create FunWallet</button>
       {loading ?
         <div>

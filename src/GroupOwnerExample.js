@@ -5,8 +5,7 @@ import {
   MetamaskConnector,
   CoinbaseWalletConnector,
   WalletConnectConnector,
-  SocialOauthConnector,
-  SUPPORTED_OAUTH_PROVIDERS,
+
   generateRandomGroupId,
   Goerli,
   configureNewFunStore,
@@ -29,7 +28,6 @@ const DEFAULT_CONNECTORS = [
   MetamaskConnector(),
   CoinbaseWalletConnector("FUN EXAMPLE APP NAME"),
   WalletConnectConnector(),
-  SocialOauthConnector(SUPPORTED_OAUTH_PROVIDERS),
 ];
 
 configureNewFunStore({

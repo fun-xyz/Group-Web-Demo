@@ -49,6 +49,10 @@ export default function App() {
 
   //Step 2: Use the initializeFunAccount method to create your funWallet object
   const initializeGroupAuthWallet = () => {
+    if (activeConnections.length<=1) {
+      alert("Less than 2 authentication methods are used. Please follow the steps.")
+      return
+    }
     const groupId = generateRandomGroupId()
     initializeFunAccount({
       users: [
@@ -65,6 +69,11 @@ export default function App() {
   }
 
   const createWallet = async () => {
+    if (!funWallet) {
+      alert("FunWallet not initialized. Please follow the steps.")
+      return
+    }
+    
     setLoading(true)
     //Step 3: Create the operation
     const op = await funWallet.create(activeAuths[0], groupIds[0])

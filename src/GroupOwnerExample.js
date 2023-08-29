@@ -15,8 +15,6 @@ import {
 import { useMemo } from "react";
 import { useState } from "react";
 import ConnectorButton from "./components/ConnectorButton"
-import SocialButton from "./components/SocialButton";
-
 
 // 1. Setting up our default FunWallet configuration by configuring react store state.
 const DEFAULT_FUN_WALLET_CONFIG = {
@@ -89,11 +87,11 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Create FunWallet with Group Authentication</h1>
+      <h1>Create FunWallet that requires multiple users to sign off on a transaction.</h1>
       1. Connect authentication providers.
       {connectors && connectors.map((_, index) => (
         index === 3 ?
-          <SocialButton></SocialButton>
+          null
           :
           <ConnectorButton key={index} index={index} />
       ))
@@ -122,7 +120,7 @@ export default function App() {
       <button onClick={createWallet}>Create FunWallet</button>
       {loading ?
         <div>
-          Please sign all 3 transactions. Loading...
+          Please sign all {activeConnections.length} transactions. Loading...
         </div>
         : <></>
       }

@@ -94,7 +94,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Create FunWallet that requires multiple users to sign off on a transaction.</h1>
+      <h1>Create FunWallet that requires multiple users to sign off on a transaction</h1>
       1.&ensp;
       {connectors && connectors.map((_, index) => (
         index === 3 ?

@@ -1,7 +1,7 @@
 
 import {
     useConnector,
-} from "@fun-xyz/react";
+} from "@funkit/react";
 
 const ConnectorButton = ({ index }) => {
     const { active, activate, deactivate, connectorName, connector } = useConnector({ index });

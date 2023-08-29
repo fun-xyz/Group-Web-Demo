@@ -2084,10 +2084,10 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@fun-xyz/core@^0.4.8":
-  version "0.4.8"
-  resolved "https://registry.yarnpkg.com/@fun-xyz/core/-/core-0.4.8.tgz#5c3ccfd97ab530e7711675b017c41cae48dd32e0"
-  integrity sha512-FvHJ3VZXKQ0W9BWwpitbhw/gXQqZGIAW0RdA/bFXPVbWqO0M9oebelI0LyPUvQLFbcFSI4dSlieylPFgOFq9yQ==
+"@funkit/core@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@funkit/core/-/core-0.8.0.tgz#28788e3eedbaebbcc95f87e1f64ec224253bdeb8"
+  integrity sha512-n4h3mHCCekxb948UrqpAatYhuj4HV7g1gal1gOXqi5rmkmOtKuwIoIzEORMCHNSU99+jqrzjUCXegHBEehAj7Q==
   dependencies:
     "@aws-sdk/client-secrets-manager" "^3.315.0"
     "@ethersproject/contracts" "^5.7.0"
@@ -2101,13 +2101,13 @@
     uuid "^9.0.0"
     viem "^0.3.50"
 
-"@fun-xyz/react@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@fun-xyz/react/-/react-0.1.11.tgz#51a6c5011c9463e5f86efb0cf7fda04a2d9bc839"
-  integrity sha512-yqRr7DRs4B5UgLHpBarFP6sWSc1Duqgu3NVLnbv434Pg1UJ7F802rc5X7C9U8E4El6wTG2HAsXiJimzFM3yzQQ==
+"@funkit/react@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@funkit/react/-/react-0.8.0.tgz#b53d746bccd6c7db669269a806b9491f3a1d2515"
+  integrity sha512-+y78jmNfR5Dibgd0J/CvCua9cwelQNp/Yo4iZv7KseAgzR/aC03sq996QWH7O0Wws2Af+x6uCQQGbxGhi4FgtA==
   dependencies:
     "@coinbase/wallet-sdk" "^3.6.6"
-    "@fun-xyz/core" "^0.4.8"
+    "@funkit/core" "^0.8.0"
     "@magic-ext/oauth" "11.0.0"
     "@magic-sdk/commons" "^14.2.1"
     "@magic-sdk/provider" "^18.2.1"

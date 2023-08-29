@@ -1,7 +1,7 @@
 import {
     useConnector,
     SocialLoginConnector,
-} from "@fun-xyz/react";
+} from "@funkit/react";
 
 const SocialConnectorDisplay = ({ index }) => {
     const { activate, deactivate, active, account, connectorName, connector } = useConnector({
